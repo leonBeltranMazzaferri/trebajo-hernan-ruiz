@@ -1,12 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
+import { StyleSheet, Text, View ,TouchableOpacity } from 'react-native';
+import PrimerComponente from './componentes/PrimerComponente';
+import SegundoComponente from './componentes/SegundoComponente';
+import TercerComponente from './componentes/TercerComponente';
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+    <PrimerComponente/>
+    <SegundoComponente/>
+    <TercerComponente/>
+    </>
   );
 }
 
