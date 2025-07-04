@@ -1,6 +1,6 @@
 import {StyleSheet, View, Text , TouchableOpacity } from "react-native";
 
-export default function SegundoComponente(presionado, texto = "0") {
+export default function Inicio(presionado, texto = "0") {
     return (
         <>
 
@@ -11,8 +11,8 @@ export default function SegundoComponente(presionado, texto = "0") {
         <View style={style.contenido}>
             
         <TouchableOpacity style={styles.boton}>
-        <Text onPress={presionado} style={styles.text}>
-    
+        <Text style={texto.text}>
+        Preciona Aqui!
         </Text>
         </TouchableOpacity>
 
@@ -42,12 +42,13 @@ export default function SegundoComponente(presionado, texto = "0") {
         boton: {
             padding: 10,
             backgroundColor: 'yellow',
-            width: 90,
-            height: 90,
+            width: 120,
+            height: 120,
             borderRadius:100,
-    },
+            alignItems: 'center',
+            justifyContent: 'center',
 
-    
+    },  
 })
     const styless = StyleSheet.create({
         container: {
@@ -55,5 +56,5 @@ export default function SegundoComponente(presionado, texto = "0") {
             backgroundColor: 'skyblue',
             alignItems: 'center',
             justifyContent: 'center',
-    },
-  });
+    },   
+  })
