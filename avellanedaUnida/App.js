@@ -1,16 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
-
-import { StyleSheet, Text, View ,TouchableOpacity } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
 import { NavigationContainer } from '@react-navigation/native';
 
 import PrimerComponente from './componentes/PrimerComponente';
 import Inicio from './componentes/Inicio';
 import TercerComponente from './componentes/TercerComponente';
 
-const Tabs = createBottomTabNavigator;
+const Tabs = createBottomTabNavigator();
 
 export default function App() {
   return (
