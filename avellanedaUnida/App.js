@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 
-import PrimerComponente from './componentes/PrimerComponente';
+import PrimerComponente from './componentes/mapa';
 import Inicio from './componentes/Inicio';
 import TercerComponente from './componentes/TercerComponente';
 
