@@ -4,9 +4,9 @@ import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 
-import PrimerComponente from './componentes/mapa';
 import Inicio from './componentes/Inicio';
 import TercerComponente from './componentes/TercerComponente';
+import mapa from './componentes/mapa';
 
 const Tabs = createBottomTabNavigator();
 
@@ -39,9 +39,8 @@ export default function App() {
         
       })}
        >
-        <Tabs.Screen name="Bandera" component={Inicio}/>
-        <Tabs.Screen name="Inicio" component={PrimerComponente}/>
-        <Tabs.Screen name="Mapas" component={TercerComponente}/>
+        <Tabs.Screen name="Inicio" component={Inicio}/>
+        <Tabs.Screen name="Mapas" component={mapa}/>
         <Tabs.Screen name="Noticias" component={TercerComponente}/>
 
       </Tabs.Navigator>

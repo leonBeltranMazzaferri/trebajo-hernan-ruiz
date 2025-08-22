@@ -1,60 +1,91 @@
-import {StyleSheet, View, Text , TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 
-export default function Inicio(presionado, texto = "0") {
-    return (
-        <>
+export default function Inicio() {
+  return (
+    <View style={styles.container}>
+      
+      {/* Encabezado */}
+      <View style={styles.header}>
+        <Text style={styles.titulo}>MapaAPP 📍</Text>
+      </View>
 
-        <View style={styless.container}>
-        <Text></Text>
-        </View>
-        
-        <View style={style.contenido}>
-            
-        <TouchableOpacity style={styles.boton}>
-        <Text style={texto.text}>
-        Preciona Aqui!
-        </Text>
+      {/* Botones principales */}
+      <View style={styles.row}>
+        <TouchableOpacity style={styles.cuadro}>
+          <Text style={styles.texto}>Mapa</Text>
         </TouchableOpacity>
 
-        </View>
+        <TouchableOpacity style={styles.cuadro}>
+          <Text style={styles.texto}>Historia</Text>
+        </TouchableOpacity>
+      </View>
 
-        <View style={styless.container}>
-        <Text></Text>
-        </View>    
+      {/* Cuadro central */}
+      <TouchableOpacity style={styles.cuadroGrande}>
+        <Text style={styles.texto}>TE PUEDE INTERESAR</Text>
+      </TouchableOpacity>
 
-
-        </>
-
-    );
+      {/* Botón inferior */}
+      <TouchableOpacity style={styles.cuadroAncho}>
+        <Text style={styles.texto}>Buzón de quejas/ redes sociales</Text>
+      </TouchableOpacity>
+    </View>
+  );
 }
 
-    const style = StyleSheet.create({
-        contenido: {
-            flex: 1,
-            backgroundColor: 'white',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: '#fff',
-        },
-    })
-
-    const styles = StyleSheet.create({
-        boton: {
-            padding: 10,
-            backgroundColor: 'yellow',
-            width: 120,
-            height: 120,
-            borderRadius:100,
-            alignItems: 'center',
-            justifyContent: 'center',
-
-    },  
-})
-    const styless = StyleSheet.create({
-        container: {
-            flex: 1,
-            backgroundColor: 'skyblue',
-            alignItems: 'center',
-            justifyContent: 'center',
-    },   
-  })
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#4F8C8C", // color de fondo como en la imagen
+    alignItems: "center",
+    justifyContent: "flex-start",
+    padding: 20,
+  },
+  header: {
+    marginTop: 40,
+    marginBottom: 20,
+  },
+  titulo: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: "white",
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
+    marginBottom: 20,
+  },
+  cuadro: {
+    flex: 1,
+    backgroundColor: "#6CA6A6",
+    margin: 5,
+    height: 100,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  cuadroGrande: {
+    width: "100%",
+    backgroundColor: "#6CA6A6",
+    height: 120,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 20,
+  },
+  cuadroAncho: {
+    width: "100%",
+    backgroundColor: "#6CA6A6",
+    height: 80,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  texto: {
+    fontSize: 18,
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+});
