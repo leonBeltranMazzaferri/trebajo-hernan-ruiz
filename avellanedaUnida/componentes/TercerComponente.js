@@ -13,6 +13,9 @@ import { StyleSheet, Text, View , TouchableOpacity} from 'react-native';
         <Text style={styles.texto}>Noticia</Text>
       </TouchableOpacity>
 
+
+      
+
       <TouchableOpacity style={styles.cuadroNoticia}>
         <Text style={styles.texto}>Noticia</Text>
       </TouchableOpacity>
