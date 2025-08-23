@@ -33,12 +33,12 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   headerBox: {
-    backgroundColor: "#003366", 
-    width: "10%",
-    padding: 80,
-    borderRadius: 30,
-    marginTop: 70,
-    marginBottom: 30,
+    backgroundColor: "#18bb5cff", 
+    width: "120%",
+    padding: 70,
+    borderRadius: 40,
+    marginTop: -30,
+    marginBottom: 40,
     alignItems: "center",
   },
   titulo: {
