@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View, ActivityIndicator } from "react-native";
-import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps"; // 👈 ojo acá
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 
 export default function Mapa() {
@@ -62,7 +62,7 @@ export default function Mapa() {
     <View style={styles.container}>
       <MapView
         style={styles.map}
-        provider={PROVIDER_GOOGLE}   // 👈 fuerza a usar Google Maps
+        provider={PROVIDER_GOOGLE} 
         initialRegion={{
           latitude: -34.6621,
           longitude: -58.3646,

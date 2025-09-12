@@ -12,23 +12,16 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.tuusuario.avellanedaunida",
-      "config": {
-        "googleMapsApiKey": "AIzaSyC8JtqvtusUWO7mk3bPN7D9ey3qFfJ3g"
-      }
-    },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.tuusuario.avellanedaunida",
+      "package": "com.usuario.avellanedaunida",
       "edgeToEdgeEnabled": true,
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyC8JtqvtusUWO7mk3bPN7D9ey3qFfJ3g"
+          "apiKey": "AIzaSyCYKl8rjBs0itPUaL7M_8qyZtnKBolI-2I"
         }
       }
     },
@@ -45,4 +38,3 @@
     ]
   }
 }
-
