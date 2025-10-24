@@ -2,7 +2,7 @@
   "expo": {
     "name": "avellanedaUnida",
     "slug": "avellanedaUnida",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -32,9 +32,6 @@
       "eas": {
         "projectId": "655b0bf6-026a-41d8-9207-c1af9d9ea9f0"
       }
-    },
-    "plugins": [
-      "expo-dev-client"
-    ]
+    }
   }
 }
