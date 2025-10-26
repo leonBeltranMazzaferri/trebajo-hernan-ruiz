@@ -3,31 +3,39 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 export default function Inicio() {
   return (
     <View style={styles.container}>
-      
       {/* Encabezado */}
       <View style={styles.header}>
-        <Text style={styles.titulo}>MapaAPP 📍</Text>
+        <Text style={styles.titulo}>MapaAPP</Text>
+        <Text style={styles.subtitulo}>Explora y descubre tu entorno</Text>
       </View>
 
-      {/* Botones principales */}
-      <View style={styles.row}>
-        <TouchableOpacity style={styles.cuadro}>
-          <Text style={styles.texto}>Mapa</Text>
+      {/* Contenido principal */}
+      <View style={styles.content}>
+        <TouchableOpacity style={styles.card}>
+          <Text style={styles.cardTitle}>Mapa</Text>
+          <Text style={styles.cardText}>
+            Encuentra ubicaciones y puntos de interés.
+          </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.cuadro}>
-          <Text style={styles.texto}>Historia</Text>
+        <TouchableOpacity style={styles.card}>
+          <Text style={styles.cardTitle}>Historia</Text>
+          <Text style={styles.cardText}>
+            Aprende sobre los lugares que visitas.
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={[styles.card, styles.highlight]}>
+          <Text style={styles.cardTitle}>Te puede interesar</Text>
+          <Text style={styles.cardText}>
+            Artículos y recomendaciones personalizadas.
+          </Text>
         </TouchableOpacity>
       </View>
-
-      {/* Cuadro central */}
-      <TouchableOpacity style={styles.cuadroGrande}>
-        <Text style={styles.texto}>TE PUEDE INTERESAR</Text>
-      </TouchableOpacity>
 
       {/* Botón inferior */}
-      <TouchableOpacity style={styles.cuadroAncho}>
-        <Text style={styles.texto}>Buzón de quejas/ redes sociales</Text>
+      <TouchableOpacity style={styles.footerButton}>
+        <Text style={styles.footerText}>Buzón de quejas</Text>
       </TouchableOpacity>
     </View>
   );
@@ -36,56 +44,70 @@ export default function Inicio() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#4F8C8C", // color de fondo como en la imagen
+    backgroundColor: "#E6F2F2", // fondo claro y elegante
     alignItems: "center",
-    justifyContent: "flex-start",
-    padding: 20,
+    justifyContent: "space-between",
+    paddingVertical: 40,
+    paddingHorizontal: 20,
   },
   header: {
-    marginTop: 40,
-    marginBottom: 20,
+    alignItems: "center",
   },
   titulo: {
-    fontSize: 28,
+    fontSize: 32,
     fontWeight: "bold",
-    color: "white",
+    color: "#2B6E6E",
+    marginBottom: 6,
   },
-  row: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+  subtitulo: {
+    fontSize: 16,
+    color: "#5C8C8C",
+  },
+  content: {
     width: "100%",
-    marginBottom: 20,
-  },
-  cuadro: {
     flex: 1,
-    backgroundColor: "#6CA6A6",
-    margin: 5,
-    height: 100,
-    borderRadius: 10,
-    alignItems: "center",
     justifyContent: "center",
   },
-  cuadroGrande: {
-    width: "100%",
-    backgroundColor: "#6CA6A6",
-    height: 120,
-    borderRadius: 10,
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: 20,
+  card: {
+    backgroundColor: "white",
+    borderRadius: 16,
+    padding: 20,
+    marginVertical: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 3,
   },
-  cuadroAncho: {
-    width: "100%",
-    backgroundColor: "#6CA6A6",
-    height: 80,
-    borderRadius: 10,
-    alignItems: "center",
-    justifyContent: "center",
+  highlight: {
+    backgroundColor: "#DFF3F3",
   },
-  texto: {
-    fontSize: 18,
-    color: "white",
+  cardTitle: {
+    fontSize: 20,
     fontWeight: "bold",
-    textAlign: "center",
+    color: "#2B6E6E",
+    marginBottom: 6,
+  },
+  cardText: {
+    fontSize: 14,
+    color: "#4F8C8C",
+  },
+  footerButton: {
+    backgroundColor: "#2B6E6E",
+    width: "100%",
+    paddingVertical: 18,
+    borderRadius: 12,
+    alignItems: "center",
+    marginTop: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    elevation: 4,
+  },
+  footerText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "600",
   },
 });
