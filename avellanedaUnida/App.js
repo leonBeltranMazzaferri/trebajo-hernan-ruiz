@@ -2,6 +2,7 @@ import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
+import { registerRootComponent } from 'expo';
 
 import Inicio from './components/Inicio';
 import Noticias from './components/Noticias';
@@ -9,7 +10,7 @@ import Mapa from './components/mapa';
 
 const Tabs = createBottomTabNavigator();
 
-export default function App() {
+function App() {
   return (
     <NavigationContainer>
       <Tabs.Navigator
@@ -30,3 +31,5 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+registerRootComponent(App);
