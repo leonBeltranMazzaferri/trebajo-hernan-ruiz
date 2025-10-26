@@ -1,36 +1,40 @@
+import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { useLanguage } from "./LanguageContext"; // usamos el contexto
 
 export default function AvellanedaHistoria() {
+  const { t } = useLanguage(); // usamos t() para traducir según el idioma seleccionado
+
   return (
     <View style={styles.container}>
       {/* Encabezado */}
       <View style={styles.headerBox}>
-        <Text style={styles.titulo}>Avellaneda Historia</Text>
+        <Text style={styles.titulo}>{t("history_title") || "Avellaneda Historia"}</Text>
         <Text style={styles.subtitulo}>
-          Descubrí hechos y curiosidades de nuestra ciudad
+          {t("history_subtitle") || "Descubrí hechos y curiosidades de nuestra ciudad"}
         </Text>
       </View>
 
       {/* Noticias */}
       <View style={styles.newsContainer}>
         <TouchableOpacity style={styles.cuadroNoticia}>
-          <Text style={styles.newsTitle}>Primeros asentamientos</Text>
+          <Text style={styles.newsTitle}>{t("first_settlements") || "Primeros asentamientos"}</Text>
           <Text style={styles.newsText}>
-            Conocé cómo comenzó el desarrollo urbano de Avellaneda.
+            {t("first_settlements_text") || "Conocé cómo comenzó el desarrollo urbano de Avellaneda."}
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.cuadroNoticia}>
-          <Text style={styles.newsTitle}>Crecimiento industrial</Text>
+          <Text style={styles.newsTitle}>{t("industrial_growth") || "Crecimiento industrial"}</Text>
           <Text style={styles.newsText}>
-            El papel de Avellaneda en la historia productiva del país.
+            {t("industrial_growth_text") || "El papel de Avellaneda en la historia productiva del país."}
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.cuadroNoticia}>
-          <Text style={styles.newsTitle}>Personajes destacados</Text>
+          <Text style={styles.newsTitle}>{t("key_figures") || "Personajes destacados"}</Text>
           <Text style={styles.newsText}>
-            Figuras que marcaron la identidad cultural y deportiva.
+            {t("key_figures_text") || "Figuras que marcaron la identidad cultural y deportiva."}
           </Text>
         </TouchableOpacity>
       </View>
