@@ -10,8 +10,9 @@
     },
     "preview": {
       "distribution": "internal",
+     
       "android": {
-        "node": "18.x"
+        "node": "18.19.0"
       }
     },
     "production": {
