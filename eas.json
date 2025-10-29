@@ -6,16 +6,10 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal",
-      "android": {         
-        "node": "18.0.0"
-      }
+      "distribution": "internal"
     },
     "preview": {
-      "distribution": "internal",
-      "android": {
-        "node": "18.19.0"  
-      }
+      "distribution": "internal"
     },
     "production": {
       "autoIncrement": true
