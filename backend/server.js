@@ -1,8 +1,12 @@
 const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
+const PORT = 3001;
 
 const app = express();
+const eventosActivosRouter = require('../API/eventos-activos');
+
+
 app.use(cors());
 app.use(express.json());
 
@@ -13,6 +17,8 @@ const db = mysql.createConnection({
   password: "",
   database: "appavellaneda"
 });
+
+app.use('/eventos-activos', eventosActivosRouter(db));
 
 db.connect(err => {
   if (err) {
@@ -95,8 +101,29 @@ app.post("/register", (req, res) => {
   );
 });
 
+// RUTA NUEVA: Obtener Eventos Temporales Activos
+app.get("/api/eventos-activos", (req, res) => {
+  // Consulta SQL para obtener eventos donde la hora actual (NOW())
+  // esté entre la hora de inicio y la hora de fin.
+  const sql = `
+    SELECT titulo, latitud, longitud, tema
+    FROM eventos_temporales
+    WHERE NOW() BETWEEN hora_inicio AND hora_fin;
+  `;
+
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error("Error al consultar eventos temporales:", err);
+      // Devolvemos un array vacío para no romper la app
+      return res.status(500).json([]); 
+    }
+
+    res.json(results);
+  });
+});
+
 // Levantar servidor en puerto 3000
-const PORT = 3000;
+
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
 });
