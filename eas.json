@@ -9,7 +9,11 @@
       "distribution": "internal"
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+     
+      "android": {
+        "node": "18.19.0"
+      }
     },
     "production": {
       "autoIncrement": true
