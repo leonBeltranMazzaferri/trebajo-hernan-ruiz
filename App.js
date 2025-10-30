@@ -5,11 +5,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { registerRootComponent } from "expo";
 
+// Componentes
 import Inicio from "./components/Inicio";
 import Noticias from "./components/Noticias";
 import Mapa from "./components/mapa";
 import LoginScreen from "./components/LoginScreen";
 import RegisterScreen from "./components/RegisterScreen";
+import FotosImportantes from "./components/FotosImportantes";
 
 // Contexto de idioma
 import { LanguageProvider } from "./components/LanguageContext";
@@ -17,11 +19,21 @@ import { LanguageProvider } from "./components/LanguageContext";
 const Tabs = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-// Navegación inferior
+// Tabs principales
 function TabsNavigator() {
   return (
     <Tabs.Navigator
       screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarActiveTintColor: "#2B6E6E",
+        tabBarInactiveTintColor: "gray",
+        tabBarStyle: {
+          backgroundColor: "#E6F2F2",
+          borderTopWidth: 0.5,
+          borderTopColor: "#ccc",
+          height: 60,
+          paddingBottom: 5,
+        },
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           if (route.name === "Inicio") iconName = focused ? "home" : "home-outline";
@@ -59,7 +71,23 @@ function App() {
               <Stack.Screen name="Register" component={RegisterScreen} />
             </>
           ) : (
-            <Stack.Screen name="Main" component={TabsNavigator} />
+            <>
+              {/* Tabs principales */}
+              <Stack.Screen name="Main" component={TabsNavigator} />
+
+              {/* Subpágina: FotosImportantes */}
+              <Stack.Screen
+                name="FotosImportantes"
+                component={FotosImportantes}
+                options={{
+                  headerShown: true,
+                  title: "Historia de Avellaneda",
+                  headerStyle: { backgroundColor: "#E6F2F2" },
+                  headerTintColor: "#2B6E6E",
+                  headerTitleStyle: { fontWeight: "bold" },
+                }}
+              />
+            </>
           )}
         </Stack.Navigator>
       </NavigationContainer>

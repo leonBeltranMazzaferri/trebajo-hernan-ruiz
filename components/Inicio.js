@@ -1,13 +1,11 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { useLanguage } from "./LanguageContext";
-import { useNavigation } from "@react-navigation/native"; // Importación correcta
+import { useNavigation } from "@react-navigation/native";
 
 export default function Inicio() {
   const { t } = useLanguage();
-  
-  // 👈 CORRECCIÓN CLAVE: Debes llamar al hook para obtener el objeto 'navigation'
-  const navigation = useNavigation(); 
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
@@ -21,16 +19,10 @@ export default function Inicio() {
 
       {/* Contenido principal */}
       <View style={styles.content}>
-        
-        {/*
-        *** SECCIÓN DEL MAPA ELIMINADA ***
-        */}
-        
         {/* ENLACE 1: HISTORIA */}
-        {/* 👈 ENLACE CORREGIDO: Llama a navigation.navigate */}
         <TouchableOpacity 
           style={styles.card}
-          onPress={() => navigation.navigate("Historia")} 
+          onPress={() => navigation.navigate("FotosImportantes")} 
         >
           <Text style={styles.cardTitle}>{t("history") || "Historia"}</Text>
           <Text style={styles.cardText}>
@@ -38,8 +30,7 @@ export default function Inicio() {
           </Text>
         </TouchableOpacity>
 
-        {/* ENLACE 2: NOTICIAS (Usamos 'Te puede interesar' como Noticias) */}
-        {/* 👈 ENLACE CORREGIDO: Llama a navigation.navigate */}
+        {/* ENLACE 2: NOTICIAS */}
         <TouchableOpacity 
           style={[styles.card, styles.highlight]}
           onPress={() => navigation.navigate("Noticias")}
@@ -49,10 +40,9 @@ export default function Inicio() {
             {t("recommendations_description") || "Mira las últimas novedades y eventos del municipio."}
           </Text>
         </TouchableOpacity>
-        
       </View>
 
-      {/* Botón inferior (se mantiene) */}
+      {/* Botón inferior */}
       <TouchableOpacity style={styles.footerButton}>
         <Text style={styles.footerText}>
           {t("complaint_box") || "Buzón de quejas"}
@@ -62,7 +52,6 @@ export default function Inicio() {
   );
 }
 
-// ... (Los estilos se mantienen igual) ...
 const styles = StyleSheet.create({
   container: {
     flex: 1,
