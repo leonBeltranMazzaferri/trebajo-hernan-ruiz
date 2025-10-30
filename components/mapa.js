@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, View, ActivityIndicator, Text } from "react-native";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
+import MapViewDirections from 'react-native-maps-directions';
 
 //(REEMPLAZA tu IP y Puerto)
 const BASE_URL = 'http://192.168.100.2:3001'; 
+const GOOGLE_MAPS_API_KEY = "AIzaSyCYKl8rjBs0itPUaL7M_8qyZtnKBolI-2I";
 
 const mapStyle = [
   {
@@ -23,7 +25,7 @@ const mapStyle = [
 
 export default function Mapa() {
   const [location, setLocation] = useState(null);
-  
+  const [destination, setDestination] = useState(null);
   const [eventosTemporales, setEventosTemporales] = useState([]); 
 
   
@@ -187,11 +189,10 @@ export default function Mapa() {
   // FIN (LÓGICA DE POLLING)
   
   //RUTA A PUNTO DE INTERÉS
-  const handleMarkerPress = (destinationTitle) => {
-    console.log(`Iniciando ruta a: ${destinationTitle}`);
-    // Aquí se usaría una función de navegación.
-    // En este entorno simulado, esta acción automáticamente
-    // calculará la ruta desde tu ubicación actual hasta el destino.
+  const handleMarkerPress = (tappedCoordinate) => {
+    console.log(`Estableciendo destino a:`, tappedCoordinate);
+    // Actualiza el estado con las coordenadas del marcador presionado
+    setDestination(tappedCoordinate);
   };
 
 
@@ -273,6 +274,7 @@ export default function Mapa() {
           latitudeDelta: 0.02,
           longitudeDelta: 0.02,
         }}
+        
 //         minZoomLevel={13}
 //         maxZoomLevel={18}
         onRegionChangeComplete={(region) => {
@@ -286,6 +288,8 @@ export default function Mapa() {
           }
         }}
       >
+        onPress={() => setDestination(null)}
+
         <Marker
           coordinate={{
             latitude: location.latitude,
@@ -302,21 +306,31 @@ export default function Mapa() {
             key={'static-' + index} 
             coordinate={zona.coordinate}
             title={zona.title}
-          //funcion de ruta            
-          onPress={() => handleMarkerPress(zona.title)}
+            //funcion de ruta            
+            onPress={() => handleMarkerPress(zona.coordinate)}
           >
             <View style={[styles.markerBase, getMarkerStyle(zona.theme)]}>
               <Text style={styles.markerText}>{getMarkerIcon(zona.theme)}</Text>
             </View>
           </Marker>
         ))}
+        {destination && location && (
+          <MapViewDirections
+            origin={location} // Coordenadas del usuario
+            destination={destination} // Coordenadas del marcador tocado
+            apikey={'AIzaSyCYKl8rjBs0itPUaL7M_8qyZtnKBolI-2I'} // Tu API Key de Google Maps
+            mode="WALKING" // Modo de transporte
+            strokeWidth={5} // Grosor de la línea
+            strokeColor="#1ca72aff"
+          />
+        )}
 
           {eventosTemporales.map((evento, index) => (
           <Marker
             key={'dynamic-' + index} 
             coordinate={{ latitude: parseFloat(evento.latitud), longitude: parseFloat(evento.longitud) }}
             title={evento.titulo}
-            onPress={() => handleMarkerPress(evento.titulo)}
+            onPress={() => handleMarkerPress(evento.coordinate)}
           >
             <View style={[styles.markerBase, getMarkerStyle("temporal")]}>
               <Text style={styles.markerText}>{getMarkerIcon("temporal")}</Text>

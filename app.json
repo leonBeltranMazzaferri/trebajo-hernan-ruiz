@@ -4,17 +4,17 @@
     "slug": "avellanedaUnida",
     "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/avellaneda.webp",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/avellaneda.webp",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/avellaneda.webp",
         "backgroundColor": "#ffffff"
       },
       "package": "com.usuario.avellanedaunida",
