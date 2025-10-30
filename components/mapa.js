@@ -3,7 +3,7 @@ import { StyleSheet, View, ActivityIndicator, Text } from "react-native";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 
-// URL de tu backend (¡REEMPLAZA con tu IP y Puerto reales!)
+//(REEMPLAZA tu IP y Puerto)
 const BASE_URL = 'http://192.168.100.2:3001'; 
 
 const mapStyle = [
@@ -23,16 +23,26 @@ const mapStyle = [
 
 export default function Mapa() {
   const [location, setLocation] = useState(null);
-  // ESTADO NUEVO para guardar los eventos que llegan del backend
+  
   const [eventosTemporales, setEventosTemporales] = useState([]); 
 
-  // Array de zonas con MÁS puntos de interés (nuevos temas: administracion, educacion)
+  
   const zonasInteres = [
-    // --- PUNTOS ORIGINALES (Manteniendo temas existentes) ---
+   
     {
       title: "Alto Avellaneda",
       coordinate: { latitude: -34.67535192170136, longitude: -58.36713333919409 },
       theme: "shopping", 
+    },
+      {
+      title: "plaza la estacion",
+      coordinate: {  latitude: -34.67542612489594, longitude: -58.362621086299875  },
+      theme: "plaza", 
+    },
+  {
+      title: "parque del futbol",
+      coordinate: { latitude: -34.670076977362285, longitude: -58.36746491054485 },
+      theme: "plaza", 
     },
     {
       title: "Plaza Alsina",
@@ -91,32 +101,23 @@ export default function Mapa() {
       coordinate: { latitude: -34.6548, longitude: -58.3675 },
       theme: "educacion", 
     },
-    {
-      title: "Escuela Técnica N° 6 (Ex-Industrial)",
-      coordinate: { latitude: -34.6655, longitude: -58.3644 },
-      theme: "educacion", 
+    {
+        title: "Escuela de Educación Secundaria tecnica Nº7",
+        coordinate: { latitude: -34.661821735275936, longitude: -58.36400510627415 },
+        theme: "educacion",
     },
-    {
-      title: "Instituto Superior de Formación Docente N° 4",
-      coordinate: { latitude: -34.6635, longitude: -58.3588 },
-      theme: "educacion", 
-    },
-
-    // Salud y Hospitales Adicionales
     {
       title: "Clínica Sudamericana",
       coordinate: { latitude: -34.6601, longitude: -58.3591 },
       theme: "hospital",
     },
 
-    // Transporte y Estaciones
     {
       title: "Estación de Tren Avellaneda",
       coordinate: { latitude: -34.662176372071144, longitude: -58.37608053568415 },
-      theme: "landmark", // Usamos Landmark o se podría crear 'transporte'
+      theme: "landmark",
     },
 
-    // Otros Puntos de Interés
     {
       title: "Cine Monumental Avellaneda",
       coordinate: { latitude: -34.6615, longitude: -58.3649 },
@@ -128,8 +129,6 @@ export default function Mapa() {
       theme: "landmark",
     },
   ];
-
-  // (Tu avellanedaBounds y useEffect se mantienen igual)
   const avellanedaBounds = {
     northEast: { latitude: -34.6470, longitude: -58.3400 },
     southWest: { latitude: -34.6900, longitude: -58.3900 },
@@ -155,7 +154,7 @@ export default function Mapa() {
 
 
  
-  // INICIO DEL CÓDIGO NUEVO (LÓGICA DE POLLING)
+  // INICIO (LÓGICA DE POLLING)
 
 
   useEffect(() => {
@@ -168,7 +167,7 @@ export default function Mapa() {
                 throw new Error('La red o el servidor no respondió correctamente');
             }
             const data = await response.json();
-            // Actualizar el estado con los nuevos eventos (viene de la BD)
+          
             setEventosTemporales(data); 
             
         } catch (error) {
@@ -178,19 +177,22 @@ export default function Mapa() {
         }
     };
 
-    // 1. Llamar la función inmediatamente al inicio
     fetchEventos(); 
-
-    // 2. Configurar el Polling (Consulta cada 90 segundos = 90000 ms)
     const intervalId = setInterval(fetchEventos, 90000); 
 
-    // 3. Limpiar el intervalo cuando el componente se desmonta
+    
     return () => clearInterval(intervalId); 
-  }, []); // El array vacío [] asegura que solo se configure una vez
-
+  }, []); 
  
-  // FIN DEL CÓDIGO NUEVO (LÓGICA DE POLLING)
+  // FIN (LÓGICA DE POLLING)
   
+  //RUTA A PUNTO DE INTERÉS
+  const handleMarkerPress = (destinationTitle) => {
+    console.log(`Iniciando ruta a: ${destinationTitle}`);
+    // Aquí se usaría una función de navegación.
+    // En este entorno simulado, esta acción automáticamente
+    // calculará la ruta desde tu ubicación actual hasta el destino.
+  };
 
 
   if (!location) {
@@ -201,7 +203,7 @@ export default function Mapa() {
     );
   }
 
-  // --- FUNCIÓN ACTUALIZADA (Nuevos Temas) ---
+  // --- FUNCIÓN ACTUALIZADA
   const getMarkerStyle = (theme) => {
     switch (theme) {
       case "plaza":
@@ -222,6 +224,8 @@ export default function Mapa() {
         return styles.markerAdministracion;
       case "educacion":
         return styles.markerEducacion;
+      case "temporal": 
+        return styles.markerTemporal;
       default:
         return styles.markerBase;
     }
@@ -248,6 +252,8 @@ export default function Mapa() {
         return "🏛️"; 
       case "educacion":
         return "🎓";
+      case "temporal": 
+        return "⭐"; 
       default:
         return "📍";
     }
@@ -267,8 +273,8 @@ export default function Mapa() {
           latitudeDelta: 0.02,
           longitudeDelta: 0.02,
         }}
-        minZoomLevel={13}
-        maxZoomLevel={18}
+//         minZoomLevel={13}
+//         maxZoomLevel={18}
         onRegionChangeComplete={(region) => {
           if (
             region.latitude > avellanedaBounds.northEast.latitude ||
@@ -280,7 +286,6 @@ export default function Mapa() {
           }
         }}
       >
-        {/* Marcador en tiempo real del usuario */}
         <Marker
           coordinate={{
             latitude: location.latitude,
@@ -291,12 +296,14 @@ export default function Mapa() {
           <View style={styles.userMarker} />
         </Marker>
 
-        {/* Marcadores de interés (Renderiza todos los puntos ESTÁTICOS) */}
+       
         {zonasInteres.map((zona, index) => (
           <Marker
-            key={'static-' + index} // Clave única para estáticos
+            key={'static-' + index} 
             coordinate={zona.coordinate}
             title={zona.title}
+          //funcion de ruta            
+          onPress={() => handleMarkerPress(zona.title)}
           >
             <View style={[styles.markerBase, getMarkerStyle(zona.theme)]}>
               <Text style={styles.markerText}>{getMarkerIcon(zona.theme)}</Text>
@@ -304,16 +311,15 @@ export default function Mapa() {
           </Marker>
         ))}
 
-          {eventosTemporales.map((evento, index) => (
+          {eventosTemporales.map((evento, index) => (
           <Marker
-            key={'dynamic-' + index} // Clave única para dinámicos
-            // Los datos de latitud/longitud vienen como strings de la BD, hay que parsearlos
+            key={'dynamic-' + index} 
             coordinate={{ latitude: parseFloat(evento.latitud), longitude: parseFloat(evento.longitud) }}
             title={evento.titulo}
+            onPress={() => handleMarkerPress(evento.titulo)}
           >
-            {/* Usamos las mismas funciones de estilo para mantener la consistencia */}
-            <View style={[styles.markerBase, getMarkerStyle(evento.tema)]}>
-              <Text style={styles.markerText}>{getMarkerIcon(evento.tema)}</Text>
+            <View style={[styles.markerBase, getMarkerStyle("temporal")]}>
+              <Text style={styles.markerText}>{getMarkerIcon("temporal")}</Text>
             </View>
           </Marker>
         ))}
@@ -365,7 +371,6 @@ const styles = StyleSheet.create({
   markerText: {
     fontSize: 16,
   },
-  // --- Estilos por tema (Originales) ---
   markerPlaza: {
     backgroundColor: "#4CAF50", 
   },
