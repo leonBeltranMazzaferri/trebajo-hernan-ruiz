@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-09-2025 a las 00:51:52
+-- Tiempo de generación: 30-10-2025 a las 22:19:29
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -36,6 +36,30 @@ CREATE TABLE `comentarios` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `eventos_temporales`
+--
+
+CREATE TABLE `eventos_temporales` (
+  `id` int(11) NOT NULL,
+  `titulo` varchar(255) NOT NULL,
+  `latitud` decimal(10,8) NOT NULL,
+  `longitud` decimal(10,8) NOT NULL,
+  `tema` varchar(50) NOT NULL,
+  `hora_inicio` datetime NOT NULL,
+  `hora_fin` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `eventos_temporales`
+--
+
+INSERT INTO `eventos_temporales` (`id`, `titulo`, `latitud`, `longitud`, `tema`, `hora_inicio`, `hora_fin`) VALUES
+(1, 'Racing vs Talleres (Activo Ahora)', -34.66740000, -58.36860000, 'estadio', '2025-10-29 11:21:54', '2025-10-29 14:21:54'),
+(2, 'Feria de Artesanos y Emprendedores', -34.66220000, -58.36460000, 'cultura', '2025-10-30 10:00:00', '2025-10-30 22:00:00');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `noticias`
 --
 
@@ -47,6 +71,13 @@ CREATE TABLE `noticias` (
   `enlace` varchar(1500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Volcado de datos para la tabla `noticias`
+--
+
+INSERT INTO `noticias` (`id`, `titular`, `cuerpo`, `fecha`, `enlace`) VALUES
+(1, 'Noche de Música Clásica en el Teatro', 'El teatro municipal ofrecerá un concierto gratuito este viernes. Las entradas se retiran con anticip', '2025-10-31', 'http://avellaneda.gob.ar/cultura/concierto_clasico');
+
 -- --------------------------------------------------------
 
 --
@@ -57,12 +88,18 @@ CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
-  `gmail` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `telefono` varchar(20) DEFAULT NULL,
-  `contrasenia` varchar(20) DEFAULT NULL,
-  `comentarios` varchar(100) NOT NULL,
-  `DNI` int(11) NOT NULL
+  `password` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `telefono`, `password`) VALUES
+(1, 'leon', 'beltran', 'leonbeltranmazzaferri@gmail.com', '1122500466', 'leon1234'),
+(2, 'Leo', 'Bel', 'beltranmazzaferri.leon@tecnica7.edu.ar ', '123456789', 'Leon1234');
 
 --
 -- Índices para tablas volcadas
@@ -72,6 +109,12 @@ CREATE TABLE `usuarios` (
 -- Indices de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `eventos_temporales`
+--
+ALTER TABLE `eventos_temporales`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -85,7 +128,7 @@ ALTER TABLE `noticias`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `gmail` (`gmail`);
+  ADD UNIQUE KEY `gmail` (`email`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -98,16 +141,22 @@ ALTER TABLE `comentarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `eventos_temporales`
+--
+ALTER TABLE `eventos_temporales`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `noticias`
 --
 ALTER TABLE `noticias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
