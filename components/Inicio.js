@@ -1,9 +1,13 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
-import { useLanguage } from "./LanguageContext"; // usamos el contexto
+import { useLanguage } from "./LanguageContext";
+import { useNavigation } from "@react-navigation/native"; // Importación correcta
 
 export default function Inicio() {
-  const { t } = useLanguage(); // usamos t() para traducir según el idioma seleccionado
+  const { t } = useLanguage();
+  
+  // 👈 CORRECCIÓN CLAVE: Debes llamar al hook para obtener el objeto 'navigation'
+  const navigation = useNavigation(); 
 
   return (
     <View style={styles.container}>
@@ -17,29 +21,38 @@ export default function Inicio() {
 
       {/* Contenido principal */}
       <View style={styles.content}>
-        <TouchableOpacity style={styles.card}>
-          <Text style={styles.cardTitle}>{t("map") || "Mapa"}</Text>
-          <Text style={styles.cardText}>
-            {t("map_description") || "Encuentra ubicaciones y puntos de interés."}
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.card}>
+        
+        {/*
+        *** SECCIÓN DEL MAPA ELIMINADA ***
+        */}
+        
+        {/* ENLACE 1: HISTORIA */}
+        {/* 👈 ENLACE CORREGIDO: Llama a navigation.navigate */}
+        <TouchableOpacity 
+          style={styles.card}
+          onPress={() => navigation.navigate("Historia")} 
+        >
           <Text style={styles.cardTitle}>{t("history") || "Historia"}</Text>
           <Text style={styles.cardText}>
             {t("history_description") || "Aprende sobre los lugares que visitas."}
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.card, styles.highlight]}>
-          <Text style={styles.cardTitle}>{t("recommendations") || "Te puede interesar"}</Text>
+        {/* ENLACE 2: NOTICIAS (Usamos 'Te puede interesar' como Noticias) */}
+        {/* 👈 ENLACE CORREGIDO: Llama a navigation.navigate */}
+        <TouchableOpacity 
+          style={[styles.card, styles.highlight]}
+          onPress={() => navigation.navigate("Noticias")}
+        >
+          <Text style={styles.cardTitle}>{t("recommendations") || "Noticias"}</Text>
           <Text style={styles.cardText}>
-            {t("recommendations_description") || "Artículos y recomendaciones personalizadas."}
+            {t("recommendations_description") || "Mira las últimas novedades y eventos del municipio."}
           </Text>
         </TouchableOpacity>
+        
       </View>
 
-      {/* Botón inferior */}
+      {/* Botón inferior (se mantiene) */}
       <TouchableOpacity style={styles.footerButton}>
         <Text style={styles.footerText}>
           {t("complaint_box") || "Buzón de quejas"}
@@ -49,6 +62,7 @@ export default function Inicio() {
   );
 }
 
+// ... (Los estilos se mantienen igual) ...
 const styles = StyleSheet.create({
   container: {
     flex: 1,

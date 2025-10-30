@@ -320,7 +320,7 @@ export default function Mapa() {
             destination={destination} // Coordenadas del marcador tocado
             apikey={'AIzaSyCYKl8rjBs0itPUaL7M_8qyZtnKBolI-2I'} // Tu API Key de Google Maps
             mode="WALKING" // Modo de transporte
-            strokeWidth={5} // Grosor de la línea
+            strokeWidth={4} // Grosor de la línea
             strokeColor="#1ca72aff"
           />
         )}
