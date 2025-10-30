@@ -121,9 +121,28 @@ app.get("/api/eventos-activos", (req, res) => {
     res.json(results);
   });
 });
+// RUTA NUEVA: Obtener Noticias Recientes
+app.get("/noticias", (req, res) => {
+  const sql = `
+    SELECT *
+    FROM noticias
+    ORDER BY fecha DESC
+    LIMIT 3;
+  `;
 
-// Levantar servidor en puerto 3000
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error("Error al consultar noticias:", err);
+      return res.status(500).json({ error: "Error al obtener noticias" });
+    }
 
+    res.json(results);
+  });
+});
+
+
+
+// Levantar servidor en puerto 3001
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
 });
