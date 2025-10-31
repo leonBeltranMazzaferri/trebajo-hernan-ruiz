@@ -61,10 +61,26 @@ const styles = StyleSheet.create({
     paddingVertical: 40,
     paddingHorizontal: 20,
   },
-  header: { alignItems: "center" },
-  titulo: { fontSize: 32, fontWeight: "bold", color: "#2B6E6E", marginBottom: 6 },
-  subtitulo: { fontSize: 16, color: "#5C8C8C" },
-  content: { width: "100%", flex: 1, justifyContent: "center" },
+  header: { 
+    alignItems: "center",
+    marginTop: 30, // <- opcional para bajar todo el header un poco
+  },
+  titulo: { 
+    fontSize: 32, 
+    fontWeight: "bold", 
+    color: "#2B6E6E", 
+    marginBottom: 6,
+    marginTop: 20, // <- baja solo el título
+  },
+  subtitulo: { 
+    fontSize: 16, 
+    color: "#5C8C8C" 
+  },
+  content: { 
+    width: "100%", 
+    flex: 1, 
+    justifyContent: "center" 
+  },
   card: {
     backgroundColor: "white",
     borderRadius: 16,
@@ -76,9 +92,19 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 3,
   },
-  highlight: { backgroundColor: "#DFF3F3" },
-  cardTitle: { fontSize: 20, fontWeight: "bold", color: "#2B6E6E", marginBottom: 6 },
-  cardText: { fontSize: 14, color: "#4F8C8C" },
+  highlight: { 
+    backgroundColor: "#DFF3F3" 
+  },
+  cardTitle: { 
+    fontSize: 20, 
+    fontWeight: "bold", 
+    color: "#2B6E6E", 
+    marginBottom: 6 
+  },
+  cardText: { 
+    fontSize: 14, 
+    color: "#4F8C8C" 
+  },
   footerButton: {
     backgroundColor: "#2B6E6E",
     width: "100%",
@@ -92,5 +118,9 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 4,
   },
-  footerText: { color: "white", fontSize: 16, fontWeight: "600" },
+  footerText: { 
+    color: "white", 
+    fontSize: 16, 
+    fontWeight: "600" 
+  },
 });
