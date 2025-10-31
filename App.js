@@ -3,9 +3,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { registerRootComponent } from "expo";
-
-// Componentes
+import { registerRootComponent } from "expo"
+;
 import Inicio from "./components/Inicio";
 import Noticias from "./components/Noticias";
 import Mapa from "./components/mapa";
@@ -13,13 +12,11 @@ import LoginScreen from "./components/LoginScreen";
 import RegisterScreen from "./components/RegisterScreen";
 import Historia from "./components/Historia";
 
-// Contexto de idioma
 import { LanguageProvider } from "./components/LanguageContext";
 
 const Tabs = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-// Tabs principales
 function TabsNavigator() {
   return (
     <Tabs.Navigator
