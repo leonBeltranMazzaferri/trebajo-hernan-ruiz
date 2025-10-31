@@ -72,7 +72,6 @@ function App() {
             </>
           ) : (
             <>
-              {/* Tabs principales */}
               <Stack.Screen name="Main" component={TabsNavigator} />
 
               <Stack.Screen
@@ -93,6 +92,5 @@ function App() {
     </LanguageProvider>
   );
 }
-
 registerRootComponent(App);
 export default App;

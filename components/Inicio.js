@@ -9,7 +9,7 @@ export default function Inicio() {
 
   return (
     <View style={styles.container}>
-      {/* Encabezado */}
+      
       <View style={styles.header}>
         <Text style={styles.titulo}>{t("app_name") || "avellanedaUnida"}</Text>
         <Text style={styles.subtitulo}>
@@ -17,7 +17,7 @@ export default function Inicio() {
         </Text>
       </View>
 
-      {/* Contenido principal */}
+      
       <View style={styles.content}>
         {/* ENLACE 1: HISTORIA */}
         <TouchableOpacity 
@@ -63,14 +63,14 @@ const styles = StyleSheet.create({
   },
   header: { 
     alignItems: "center",
-    marginTop: 30, // <- opcional para bajar todo el header un poco
+    marginTop: 30, 
   },
   titulo: { 
     fontSize: 32, 
     fontWeight: "bold", 
     color: "#2B6E6E", 
     marginBottom: 6,
-    marginTop: 20, // <- baja solo el título
+    marginTop: 20, 
   },
   subtitulo: { 
     fontSize: 16, 
