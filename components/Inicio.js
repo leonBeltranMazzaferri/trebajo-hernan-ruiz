@@ -22,7 +22,7 @@ export default function Inicio() {
         {/* ENLACE 1: HISTORIA */}
         <TouchableOpacity 
           style={styles.card}
-          onPress={() => navigation.navigate("FotosImportantes")} 
+          onPress={() => navigation.navigate("Historia")} 
         >
           <Text style={styles.cardTitle}>{t("history") || "Historia"}</Text>
           <Text style={styles.cardText}>

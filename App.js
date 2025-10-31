@@ -11,7 +11,7 @@ import Noticias from "./components/Noticias";
 import Mapa from "./components/mapa";
 import LoginScreen from "./components/LoginScreen";
 import RegisterScreen from "./components/RegisterScreen";
-import FotosImportantes from "./components/FotosImportantes";
+import Historia from "./components/Historia";
 
 // Contexto de idioma
 import { LanguageProvider } from "./components/LanguageContext";
@@ -75,10 +75,9 @@ function App() {
               {/* Tabs principales */}
               <Stack.Screen name="Main" component={TabsNavigator} />
 
-              {/* Subpágina: FotosImportantes */}
               <Stack.Screen
-                name="FotosImportantes"
-                component={FotosImportantes}
+                name="Historia"
+                component={Historia}
                 options={{
                   headerShown: true,
                   title: "Historia de Avellaneda",
